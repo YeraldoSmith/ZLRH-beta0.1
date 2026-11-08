@@ -17,40 +17,56 @@ Copyright © 2026 **Yeraldo Smith**（GitHub：YeraldoSmith · Hugging Face：Ye
 | `zlrh-0.5.0-beta0.1-macos-arm64.tar.gz` | **MacBook Air / Pro（M1~M4）** |
 | `zlrh-0.5.0-beta0.1-macos-x86_64.tar.gz` | Intel 芯片的 Mac |
 | `zlrh-0.5.0-beta0.1-linux-x86_64.tar.gz` | Linux x86_64（静态链接，任何发行版） |
-| `zlrh-0.5.0-beta0.1-windows-x86_64.zip` | Windows 10 / 11 64 位（构建完成后补上） |
+| `zlrh-0.5.0-beta0.1-windows-x86_64.zip` | Windows 10 / 11 64 位 |
 | `SHA256SUMS` | 以上安装包的 SHA-256 校验值 |
 
 ## MacBook Air M4 快速安装（终端）
 
+> 请**逐行**复制执行。Mac 的终端（zsh）默认不认行尾的 `#` 注释，所以这里的命令都不带注释。
+
+**第 1 步：拉取并校验**（最后一行必须显示 `…macos-arm64.tar.gz: OK`）。用 git 拉取的文件不会被 macOS 标记为“来自互联网”。
+
 ```bash
-# 1. 拉取安装包（用 git 拉取的文件不会被 macOS 标记为“来自互联网”）
 git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
 cd ~/zlrh-beta/releases/0.5.0-beta0.1
-
-# 2. 校验（必须显示 OK）
 shasum -a 256 -c SHA256SUMS --ignore-missing
+```
 
-# 3. 解压并安装到 ~/.local/bin（不需要 sudo）
+**第 2 步：解压并安装**到 `~/.local/bin`（不需要 sudo；询问是否加入 PATH 时直接回车）：
+
+```bash
 tar -xzf zlrh-0.5.0-beta0.1-macos-arm64.tar.gz
 cd zlrh-0.5.0-beta0.1-macos-arm64
 sh install.sh
-
-# 4. 新开一个终端窗口
-zlrh --version        # zlrh 0.5.0 (beta0.1)
-zlrh                  # 首次运行显示用户协议，输入「同意」后进入中文向导
 ```
 
-> 仓库改为私有后，`git clone` 需要登录：推荐 `brew install gh && gh auth login`，然后
-> `gh repo clone YeraldoSmith/ZLRH-beta0.1 ~/zlrh-beta -- --depth 1`。
+**第 3 步：新开一个终端窗口**，先确认版本（应显示 `zlrh 0.5.0 (beta0.1)`），再运行 `zlrh`：
+首次运行会显示用户协议，输入 `同意` 后进入中文向导。
+
+```bash
+zlrh --version
+zlrh
+```
+
+> 仓库改为私有后，`git clone` 需要登录：先执行 `brew install gh` 和 `gh auth login`，再用
+> `gh repo clone YeraldoSmith/ZLRH-beta0.1 ~/zlrh-beta -- --depth 1` 代替第 1 步的第一行。
 
 之后的训练环境（MLX）、第一个模型、斗兽场、蒸馏等完整步骤见 [`INSTALL.md`](INSTALL.md)，
 所有命令与参数见安装包里的 `MANUAL.md`。
 
 ## 更新与卸载
 
+更新：进入拉取目录执行 `git pull`，再按上面第 2 步重新安装（会覆盖旧版）：
+
 ```bash
-cd ~/zlrh-beta && git pull                     # 拉取新版本，再按上面步骤 3 安装（会覆盖旧版）
-sh ~/zlrh-beta/releases/0.5.0-beta0.1/zlrh-0.5.0-beta0.1-macos-arm64/uninstall.sh   # 卸载
+cd ~/zlrh-beta
+git pull
+```
+
+卸载（只删除程序；`~/.zlrh` 工作目录会先询问）：
+
+```bash
+sh ~/zlrh-beta/releases/0.5.0-beta0.1/zlrh-0.5.0-beta0.1-macos-arm64/uninstall.sh
 ```
 
 ## 安全

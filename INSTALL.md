@@ -22,14 +22,26 @@
 
 下面所有命令都在「终端」里输入（启动台 → 其他 → 终端，或按 ⌘+空格 搜索“终端”）。
 
+> **重要**：下面的命令请**逐行**复制到终端执行。Mac 的终端（zsh）默认不认行尾的 `#` 注释，
+> 所以本说明的命令里不带注释，说明都写在命令外面。
+
 ### 1. 下载并校验
 
-把 `zlrh-<版本>-macos-arm64.tar.gz` 和 `SHA256SUMS` 下载到“下载”文件夹，然后：
+推荐用 git 拉取（用 git 拉取的文件不会被 macOS 标记为“来自互联网”）：
+
+```bash
+git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
+cd ~/zlrh-beta/releases/0.5.0-beta0.1
+shasum -a 256 -c SHA256SUMS --ignore-missing
+```
+
+看到 `zlrh-…-macos-arm64.tar.gz: OK` 才继续；显示 FAILED 说明文件不完整或被改动，请重新拉取。
+
+如果你是用浏览器下载的，把 `zlrh-<版本>-macos-arm64.tar.gz` 和 `SHA256SUMS` 放进“下载”文件夹，然后：
 
 ```bash
 cd ~/Downloads
 shasum -a 256 -c SHA256SUMS --ignore-missing
-# 看到  zlrh-…-macos-arm64.tar.gz: OK  才继续；显示 FAILED 说明文件不完整或被改动，请重新下载
 ```
 
 ### 2. 解压并安装
@@ -45,12 +57,13 @@ sh install.sh
 
 ### 3. 确认安装、同意用户协议
 
-**新开一个终端窗口**（让 PATH 生效），然后：
+**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.5.0 (beta0.1)`；
+第二条显示用户协议与版权声明；第三条是环境检测——首次运行任何功能都会显示用户协议，阅读后输入「同意」。
 
 ```bash
-zlrh --version        # 显示 zlrh 0.5.0 即安装成功
-zlrh license          # 查看用户协议与版权声明
-zlrh doctor           # 首次运行任何功能都会显示用户协议，阅读后输入「同意」
+zlrh --version
+zlrh license
+zlrh doctor
 ```
 
 > 如果弹出“无法打开 zlrh，因为无法验证开发者”：打开 **系统设置 → 隐私与安全性**，在页面下方点 **仍要打开**；
@@ -58,15 +71,15 @@ zlrh doctor           # 首次运行任何功能都会显示用户协议，阅�
 
 ### 4. 安装训练环境（MLX，只需一次）
 
-zlrh 用 Python 环境里的 MLX 在 M 芯片上训练和推理。推荐先装 **uv**（它会自动准备合适版本的 Python，不污染系统）：
+zlrh 用 Python 环境里的 MLX 在 M 芯片上训练和推理。推荐先装 **uv**（它会自动准备合适版本的 Python，不污染系统）。
+下面第一行适用于已安装 Homebrew 的情况；没有 Homebrew 就改用第二行的官方安装脚本（两行二选一）。
+`zlrh env setup` 会自动选择 MLX 后端并创建 `~/.zlrh/venv`；国内网络慢就用最后一行（带清华 PyPI 镜像）代替它：
 
 ```bash
-# 二选一：
-brew install uv                                    # 已安装 Homebrew 的话
-curl -LsSf https://astral.sh/uv/install.sh | sh    # 官方安装脚本
+brew install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-zlrh env setup                                     # 自动选择 MLX 后端，创建 ~/.zlrh/venv
-# 国内网络慢可以加 PyPI 镜像：
+zlrh env setup
 zlrh env setup --pip-index https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
@@ -74,22 +87,28 @@ zlrh env setup --pip-index https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### 5. 第一个模型
 
+依次：建工作目录 → 生成 `zlrh.toml` 与 `models/ runs/ skills/` → 下载一个 0.5B 小模型（自动测速选线并校验）→
+和它聊几句确认能推理 → 看看 16GB 内存能训练多大的模型：
+
 ```bash
 mkdir -p ~/zlrh-work && cd ~/zlrh-work
-zlrh init                                          # 生成 zlrh.toml 与 models/ runs/ skills/ 目录
-zlrh pull Qwen/Qwen2.5-0.5B-Instruct               # 自动测速选择最快的下载线路，下载后校验
-zlrh chat models/Qwen2.5-0.5B-Instruct             # 和它聊几句，确认能正常推理
-zlrh plan                                          # 看看你的 16GB 内存能训练多大的模型
+zlrh init
+zlrh pull Qwen/Qwen2.5-0.5B-Instruct
+zlrh chat models/Qwen2.5-0.5B-Instruct
+zlrh plan
 ```
 
 ### 6. 试试斗兽场和蒸馏
 
+依次：查看本机能让几个模型同时上场 → 不用模型先看斗兽场 → 让内置机器人去“套”你的本地模型 →
+设置在线大模型的 Key（只在当前终端有效，不会写入文件）→ 用它当老师蒸馏 200 条代码 + 数学数据：
+
 ```bash
-zlrh arena check                                   # 本机能让几个模型同时上场
-zlrh arena capture -a bot:attack -l C1             # 不用模型，先看斗兽场长什么样
+zlrh arena check
+zlrh arena capture -a bot:attack -l C1
 zlrh arena trick -a bot:social -d local:models/Qwen2.5-0.5B-Instruct -s T1
 
-export DEEPSEEK_API_KEY=sk-...                      # 用在线大模型当老师（Key 只在本次终端有效，不会写入文件）
+export DEEPSEEK_API_KEY=sk-...
 zlrh distill --teacher deepseek/deepseek-chat --student models/Qwen2.5-0.5B-Instruct \
   --skills code:0.6,math:0.4 -n 200 --fit
 ```
@@ -111,7 +130,7 @@ zlrh distill --teacher deepseek/deepseek-chat --student models/Qwen2.5-0.5B-Inst
 
 ```bash
 tar -xzf zlrh-*-linux-x86_64.tar.gz && cd zlrh-*-linux-x86_64 && sh install.sh
-zlrh env setup                    # NVIDIA 显卡会自动选 CUDA 版 PyTorch，可用 --cuda cu124 指定
+zlrh env setup
 ```
 
 ## 三、Windows 10 / 11
@@ -130,9 +149,11 @@ zlrh env setup                    # NVIDIA 显卡会自动选 CUDA 版 PyTorch�
 
 ## 四、卸载
 
+在安装包解压后的目录里运行（第一行是 macOS / Linux，第二行是 Windows）：
+
 ```bash
-sh uninstall.sh                                          # macOS / Linux（在安装包目录里运行）
-powershell -ExecutionPolicy Bypass -File .\uninstall.ps1 # Windows
+sh uninstall.sh
+powershell -ExecutionPolicy Bypass -File .\uninstall.ps1
 ```
 
 默认只删除 `zlrh` 程序；`~/.zlrh` 工作目录会先询问；你自己的模型和数据不会被动到。
