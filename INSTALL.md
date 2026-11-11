@@ -31,7 +31,7 @@
 
 ```bash
 git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
-cd ~/zlrh-beta/releases/0.6.0-beta0.2
+cd ~/zlrh-beta/releases/0.7.0-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
 ```
 
@@ -57,7 +57,7 @@ sh install.sh
 
 ### 3. 确认安装、同意用户协议
 
-**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.6.0 (beta0.2)`；
+**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.7.0 (beta0.3)`；
 第二条显示用户协议与版权声明；第三条是环境检测——首次运行任何功能都会显示用户协议，阅读后输入「同意」。
 
 ```bash
@@ -98,7 +98,23 @@ zlrh chat models/Qwen2.5-0.5B-Instruct
 zlrh plan
 ```
 
-### 6. 试试斗兽场和蒸馏
+### 6. 逛逛模型商店、生成一张图片
+
+直接运行 `zlrh`，在「🛒 模型商店」里可以像应用商店一样浏览：适合这台电脑的热门模型、Mac 加速的 MLX 版本、
+LM Studio 也能用的 GGUF 版本、精选的生图 / 视频模型；每个模型都显示参数量、下载大小和“本机内存放不放得下”。
+命令行也可以搜索；第三行生成一张图片（首次会自动下载约 2.6GB 的 SD-Turbo，并自动安装生图组件）：
+
+```bash
+zlrh search qwen3 -t chat --fits
+zlrh search -t image -s trending
+zlrh image sd-turbo -p "a cat astronaut on the moon" --open
+```
+
+已经在 LM Studio 里下载过模型？在向导「💬 对话」→「本机模型」里会直接列出来（GGUF 和 MLX 都可以），
+也可以把 `.gguf` 文件拖进终端。和 GGUF 对话需要 llama.cpp：`brew install llama.cpp`（最简单），
+或者打开 LM Studio 的本机服务（左侧「开发者」→ 启动服务器）。
+
+### 7. 试试斗兽场和蒸馏
 
 依次：查看本机能让几个模型同时上场 → 不用模型先看斗兽场 → 让内置机器人去“套”你的本地模型 →
 设置在线大模型的 Key（只在当前终端有效，不会写入文件）→ 用它当老师蒸馏 200 条代码 + 数学数据：
@@ -115,10 +131,12 @@ zlrh distill --teacher deepseek/deepseek-chat --student models/Qwen2.5-0.5B-Inst
 
 或者直接运行 `zlrh`，进入中文交互向导，一路选择即可。
 
-### 7. MacBook Air M4 16GB 的建议
+### 8. MacBook Air M4 16GB 的建议
 
 - 训练：0.5B~1.5B 可以 LoRA 舒服地训练；3B 建议 `--quant 4`（QLoRA）；7B 只建议 QLoRA + 短序列，`--fit` 会自动帮你调；
-- 推理 / 斗兽场：0.5B~3B 原精度、7B 用 4bit 都能跑；14B 以上用在线 API；
+- 推理 / 斗兽场：0.5B~3B 原精度、7B 用 4bit 都能跑；14B 以上用在线 API；GGUF 建议选 ≤10GB 的文件（如 8B 的 Q4_K_M）；
+- 生图：SD-Turbo、Tiny-SD、SD1.5、SSD-1B、SDXL-Turbo 都可以；FLUX 需要 32GB 以上内存；
+- 视频：Wan2.1 1.3B 会自动“分阶段加载”，默认 512×320、约 2 秒；生成一段需要几分钟，期间风扇（Air 没有风扇）/ 温度会升高；
 - MacBook Air 没有风扇，长时间训练会降频，建议插电、放在通风处；
 - 所有数据都在 `~/.zlrh`（环境、日志）和你自己的工作目录（模型、运行结果）里。
 
@@ -162,14 +180,14 @@ zlrh update
 ```bash
 cd ~/zlrh-beta
 git pull
-cd releases/0.6.0-beta0.2
+cd releases/0.7.0-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
-tar -xzf zlrh-0.6.0-beta0.2-macos-arm64.tar.gz
-cd zlrh-0.6.0-beta0.2-macos-arm64
+tar -xzf zlrh-0.7.0-beta0.3-macos-arm64.tar.gz
+cd zlrh-0.7.0-beta0.3-macos-arm64
 sh install.sh
 ```
 
-新版的用户协议有更新（增加了检查更新、本地网关的说明），首次运行时会请你重新确认。
+新版的用户协议有更新，首次运行时会请你重新确认（输入「同意」）。
 
 ## 五、卸载
 

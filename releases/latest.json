@@ -1,37 +1,37 @@
 {
   "product": "zlrh",
-  "version": "0.6.0",
-  "label": "beta0.2",
+  "version": "0.7.0",
+  "label": "beta0.3",
   "published": "2026-11-11",
-  "notes": "v0.6.0（beta0.2）\n- 新增 zlrh chat：终端流式对话（/system /temp /retry /save 等命令），zlrh chat --web 打开网页对话界面\n- 新增 zlrh serve 本地 API 网关（反代）：本地模型 / Ollama / 在线 API 统一成带密钥的 OpenAI 兼容地址，支持流式与工具调用，可直接接入 OpenClaw\n- 新增定向蒸馏：quant（股票/期货量化）、crypto（加密货币量化与风控）、zh、en 能力包；--preset 预设组合、--keep-general 保留通用能力、领域门控\n- 新增 zlrh push / zlrh hub：一键上传到自己的 Hugging Face 仓库（默认私有，上传前扫描密钥），查看私有仓库\n- 新增空白学生模型：blank:0.6b ~ blank:14b 基座预设；zlrh new-model 生成 0.1B~8B 随机初始化模型\n- 新增 zlrh update：签名校验的应用内自动更新，拒绝降级；每天后台检查一次（可关闭）\n- 本地推理服务统一为 zl_serve.py（MLX / PyTorch），支持流式、工具调用、stop\n- 用户协议更新（检查更新与本地网关说明），首次运行需重新确认",
+  "notes": "v0.7.0（beta0.3）\n- 交互向导重做：菜单分组、Esc 返回上一级、文本留空返回；每个操作结束后结果停留在屏幕上，按回车才回到菜单（修复“输入什么都退回菜单、看不到错误”）\n- 选模型时自动列出本机能用的模型（项目 models/、LM Studio、Hugging Face 缓存），输入当场校验并说明原因；支持把文件夹拖进终端\n- 新增模型商店：zlrh search 与向导内搜索 / 分类 / 排序 / 详情 / 一键下载，显示本机内存是否放得下；GGUF 仓库只下载一个量化版本\n- 新增生图 / 视频：zlrh image、zlrh video（SD-Turbo、SDXL、SSD-1B、FLUX、Wan2.1、LTX 等），Mac 上自动选择精度、注意力切片、VAE 分块，小内存时分阶段加载；LoRA；生图模型按组件融合；网关新增图片 / 视频接口，网页界面支持生成\n- 可以直接和 GGUF（LM Studio / Ollama 下载的模型）对话或接入网关：llama-server 或 LM Studio 加载，加载前检查内存\n- 修复审查问题：下载路径校验、断点续传卡死、小文件哈希校验、魔搭兜底改为显式 --fallback-ms、项目配置不能覆盖内置预设、输出目录不能与输入相同、身份过滤误杀、--prompts 支持 .json 等\n- 用户协议更新（生成内容与模型许可证、模型商店与 LM Studio 的说明），首次运行需重新确认",
   "files": {
     "linux-x86_64": {
-      "path": "0.6.0-beta0.2/zlrh-0.6.0-beta0.2-linux-x86_64.tar.gz",
-      "size": 6328156,
-      "sha256": "759241eb700b945018062b28323c294504f756403c6910b0ebb1457e4899faa2",
+      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-linux-x86_64.tar.gz",
+      "size": 6547743,
+      "sha256": "fb946ac879c3d56d654015da27c9db99f4f5a9604e6edd1fba64383366f287b7",
       "bin": "zlrh",
-      "bin_sha256": "9f104dbaf67f9e67685ff0f5aacc5e113d6afde732abc7a6385374ecc7ecfa2e"
+      "bin_sha256": "c4086b17de122de095c7c8d72ffa843d408bcb64144ac991b8bfa2f6e510202a"
     },
     "macos-arm64": {
-      "path": "0.6.0-beta0.2/zlrh-0.6.0-beta0.2-macos-arm64.tar.gz",
-      "size": 5621331,
-      "sha256": "f7a3b2db3bd68bb9e403db4f36f832f36c37da01abed7de3a8d550f98dc7be85",
+      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-macos-arm64.tar.gz",
+      "size": 5906782,
+      "sha256": "d33e703c1d7a323ca68a1f28084ca809d82f2655c33b064cbdeae471b6a925fa",
       "bin": "zlrh",
-      "bin_sha256": "39cd3108d3f7d190d479fe23c64434b7d60dee59f6f7e9286257dac1bb581148"
+      "bin_sha256": "765e6930faea8b3210a5b417856ee53f0906b366405b0685865b504af5c0736a"
     },
     "macos-x86_64": {
-      "path": "0.6.0-beta0.2/zlrh-0.6.0-beta0.2-macos-x86_64.tar.gz",
-      "size": 5984832,
-      "sha256": "32fd2c05e3c8ed0a0ed53add686221e81d8b45a4e7beefdb7792a07ecd869b3a",
+      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-macos-x86_64.tar.gz",
+      "size": 6269568,
+      "sha256": "623255e9c1508dceb522c5452c7e3fa9ff60b21f6432752aabedc8dc99826263",
       "bin": "zlrh",
-      "bin_sha256": "4cd8bcf0b66f4936b46c5d472e0bb60e3aebc8e3c0272696db144d7eb7b9f0f0"
+      "bin_sha256": "5d29ea3b16cb5fa059aeae35f96ee828ebdc21cf24770ec696c3ee81d304fec0"
     },
     "windows-x86_64": {
-      "path": "0.6.0-beta0.2/zlrh-0.6.0-beta0.2-windows-x86_64.zip",
-      "size": 6331537,
-      "sha256": "4928d9c5417da846971d951f5367ccf06c1637290c8fc72bd3c7883f91fa93dc",
+      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-windows-x86_64.zip",
+      "size": 6669799,
+      "sha256": "89849f8b69800e3142bd64cd1d27e3ef41d2ab84b5b6cdad7bc41ceca8111a9c",
       "bin": "zlrh.exe",
-      "bin_sha256": "4aa7a742cb971ce4ba73607a9ee489606094733a61f080db67bdc334a957e871"
+      "bin_sha256": "e3ba931b0371b0e5e15f70f59ddc2c2eccb742881a2f91baa0c92c3f9763203f"
     }
   }
 }
