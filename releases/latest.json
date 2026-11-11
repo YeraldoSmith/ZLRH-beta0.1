@@ -1,37 +1,37 @@
 {
   "product": "zlrh",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "label": "beta0.3",
   "published": "2026-11-11",
-  "notes": "v0.7.0（beta0.3）\n- 交互向导重做：菜单分组、Esc 返回上一级、文本留空返回；每个操作结束后结果停留在屏幕上，按回车才回到菜单（修复“输入什么都退回菜单、看不到错误”）\n- 选模型时自动列出本机能用的模型（项目 models/、LM Studio、Hugging Face 缓存），输入当场校验并说明原因；支持把文件夹拖进终端\n- 新增模型商店：zlrh search 与向导内搜索 / 分类 / 排序 / 详情 / 一键下载，显示本机内存是否放得下；GGUF 仓库只下载一个量化版本\n- 新增生图 / 视频：zlrh image、zlrh video（SD-Turbo、SDXL、SSD-1B、FLUX、Wan2.1、LTX 等），Mac 上自动选择精度、注意力切片、VAE 分块，小内存时分阶段加载；LoRA；生图模型按组件融合；网关新增图片 / 视频接口，网页界面支持生成\n- 可以直接和 GGUF（LM Studio / Ollama 下载的模型）对话或接入网关：llama-server 或 LM Studio 加载，加载前检查内存\n- 修复审查问题：下载路径校验、断点续传卡死、小文件哈希校验、魔搭兜底改为显式 --fallback-ms、项目配置不能覆盖内置预设、输出目录不能与输入相同、身份过滤误杀、--prompts 支持 .json 等\n- 用户协议更新（生成内容与模型许可证、模型商店与 LM Studio 的说明），首次运行需重新确认",
+  "notes": "v0.7.1（beta0.3）\n- 模型服务看门狗：关闭终端窗口或 zlrh 意外退出时，后台的模型服务（llama-server、生图服务、本地推理服务）会在 1 秒内自动结束，不再继续占用内存\n- 交互向导重做：菜单分组、Esc 返回上一级、文本留空返回；每个操作结束后结果停留在屏幕上，按回车才回到菜单（修复“输入什么都退回菜单、看不到错误”）\n- 选模型时自动列出本机能用的模型（项目 models/、LM Studio、Hugging Face 缓存），输入当场校验并说明原因；支持把文件夹拖进终端\n- 新增模型商店：zlrh search 与向导内搜索 / 分类 / 排序 / 详情 / 一键下载，显示本机内存是否放得下；GGUF 仓库只下载一个量化版本\n- 新增生图 / 视频：zlrh image、zlrh video（SD-Turbo、SDXL、SSD-1B、FLUX、Wan2.1、LTX 等），Mac 上自动选择精度、注意力切片、VAE 分块，小内存时分阶段加载；LoRA；生图模型按组件融合；网关新增图片 / 视频接口，网页界面支持生成\n- 可以直接和 GGUF（LM Studio / Ollama 下载的模型）对话或接入网关：llama-server 或 LM Studio 加载，加载前检查内存\n- 修复审查问题：下载路径校验、断点续传卡死、小文件哈希校验、魔搭兜底改为显式 --fallback-ms、项目配置不能覆盖内置预设、输出目录不能与输入相同、身份过滤误杀、--prompts 支持 .json 等\n- 用户协议更新（生成内容与模型许可证、模型商店与 LM Studio 的说明），首次运行需重新确认",
   "files": {
     "linux-x86_64": {
-      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-linux-x86_64.tar.gz",
-      "size": 6547743,
-      "sha256": "fb946ac879c3d56d654015da27c9db99f4f5a9604e6edd1fba64383366f287b7",
+      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-linux-x86_64.tar.gz",
+      "size": 6549270,
+      "sha256": "68684f8d0006263875aa895cd02bed86f5fda690650e94d551d20f4e52c94b1f",
       "bin": "zlrh",
-      "bin_sha256": "c4086b17de122de095c7c8d72ffa843d408bcb64144ac991b8bfa2f6e510202a"
+      "bin_sha256": "323a35721c67154f99ea7973f540d20c8b9e478b8921b4cbcba7092199ce8782"
     },
     "macos-arm64": {
-      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-macos-arm64.tar.gz",
-      "size": 5906782,
-      "sha256": "d33e703c1d7a323ca68a1f28084ca809d82f2655c33b064cbdeae471b6a925fa",
+      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-macos-arm64.tar.gz",
+      "size": 5908054,
+      "sha256": "f8481e3b3bc18f7249e349a1fd4aa549f01c48da4c25f0738ea39e6adf68e997",
       "bin": "zlrh",
-      "bin_sha256": "765e6930faea8b3210a5b417856ee53f0906b366405b0685865b504af5c0736a"
+      "bin_sha256": "ab2721b12816b96147e249b9676f826406944ef8731715d36aa0413c9b624c33"
     },
     "macos-x86_64": {
-      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-macos-x86_64.tar.gz",
-      "size": 6269568,
-      "sha256": "623255e9c1508dceb522c5452c7e3fa9ff60b21f6432752aabedc8dc99826263",
+      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-macos-x86_64.tar.gz",
+      "size": 6267669,
+      "sha256": "76f5f3e76f1f1af0bff4d4c833b448ee7e0670a42c2b4fd71d914f9451fd8e8f",
       "bin": "zlrh",
-      "bin_sha256": "5d29ea3b16cb5fa059aeae35f96ee828ebdc21cf24770ec696c3ee81d304fec0"
+      "bin_sha256": "49ba164c5be072f717412cb8afda69ea24a7e7ca00d65c04267dd31366f5ded8"
     },
     "windows-x86_64": {
-      "path": "0.7.0-beta0.3/zlrh-0.7.0-beta0.3-windows-x86_64.zip",
-      "size": 6669799,
-      "sha256": "89849f8b69800e3142bd64cd1d27e3ef41d2ab84b5b6cdad7bc41ceca8111a9c",
+      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-windows-x86_64.zip",
+      "size": 6670908,
+      "sha256": "48d71fecb4fb382177ae7572e3525a5469107446371e6c1a1c0de770030f8ff9",
       "bin": "zlrh.exe",
-      "bin_sha256": "e3ba931b0371b0e5e15f70f59ddc2c2eccb742881a2f91baa0c92c3f9763203f"
+      "bin_sha256": "161269e0aa26a74b59e62b639c7ecaecf4fac2ce75451ff3c9031efc67b75fcd"
     }
   }
 }

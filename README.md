@@ -9,9 +9,9 @@ Copyright © 2026 **Yeraldo Smith**（GitHub：YeraldoSmith · Hugging Face：Ye
 > 本仓库只发布安装包，不含源代码。使用前请阅读 [`EULA.md`](EULA.md)（用户协议与版权声明），
 > 程序首次运行时也会显示并要求你输入“同意”。未经作者许可，请勿转发或公开传播安装包。
 
-## 最新版本：v0.7.0（beta0.3）
+## 最新版本：v0.7.1（beta0.3）
 
-位于 [`releases/0.7.0-beta0.3/`](releases/0.7.0-beta0.3/)，更新内容见 [`releases/latest.json`](releases/latest.json) 的 notes：
+位于 [`releases/0.7.1-beta0.3/`](releases/0.7.1-beta0.3/)，更新内容见 [`releases/latest.json`](releases/latest.json) 的 notes：
 
 - **交互向导重做**：菜单分组、Esc 返回上一级、输入当场校验并说明原因；每个操作结束后结果停留在屏幕上，按回车才回到菜单；
 - **模型商店**：`zlrh search` 与向导里像应用商店一样搜索、分类、排序、看详情、判断本机内存放不放得下、一键下载；
@@ -20,10 +20,10 @@ Copyright © 2026 **Yeraldo Smith**（GitHub：YeraldoSmith · Hugging Face：Ye
 
 | 文件 | 适用设备 |
 |---|---|
-| `zlrh-0.7.0-beta0.3-macos-arm64.tar.gz` | **MacBook Air / Pro（M1~M4）** |
-| `zlrh-0.7.0-beta0.3-macos-x86_64.tar.gz` | Intel 芯片的 Mac |
-| `zlrh-0.7.0-beta0.3-linux-x86_64.tar.gz` | Linux x86_64（静态链接，任何发行版） |
-| `zlrh-0.7.0-beta0.3-windows-x86_64.zip` | Windows 10 / 11 64 位 |
+| `zlrh-0.7.1-beta0.3-macos-arm64.tar.gz` | **MacBook Air / Pro（M1~M4）** |
+| `zlrh-0.7.1-beta0.3-macos-x86_64.tar.gz` | Intel 芯片的 Mac |
+| `zlrh-0.7.1-beta0.3-linux-x86_64.tar.gz` | Linux x86_64（静态链接，任何发行版） |
+| `zlrh-0.7.1-beta0.3-windows-x86_64.zip` | Windows 10 / 11 64 位 |
 | `SHA256SUMS` | 以上安装包的 SHA-256 校验值 |
 
 旧版本保留在 `releases/0.6.0-beta0.2/`、`releases/0.5.0-beta0.1/`。
@@ -44,14 +44,14 @@ zlrh update
 ```bash
 cd ~/zlrh-beta
 git pull
-cd releases/0.7.0-beta0.3
+cd releases/0.7.1-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
-tar -xzf zlrh-0.7.0-beta0.3-macos-arm64.tar.gz
-cd zlrh-0.7.0-beta0.3-macos-arm64
+tar -xzf zlrh-0.7.1-beta0.3-macos-arm64.tar.gz
+cd zlrh-0.7.1-beta0.3-macos-arm64
 sh install.sh
 ```
 
-新开一个终端窗口，确认版本（应显示 `zlrh 0.7.0 (beta0.3)`），再运行 `zlrh`（用户协议有更新，会请你重新输入 `同意`）：
+新开一个终端窗口，确认版本（应显示 `zlrh 0.7.1 (beta0.3)`），再运行 `zlrh`（用户协议有更新，会请你重新输入 `同意`）：
 
 ```bash
 zlrh --version
@@ -64,15 +64,15 @@ zlrh
 
 ```bash
 git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
-cd ~/zlrh-beta/releases/0.7.0-beta0.3
+cd ~/zlrh-beta/releases/0.7.1-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
 ```
 
 **第 2 步：解压并安装**到 `~/.local/bin`（不需要 sudo；询问是否加入 PATH 时直接回车）：
 
 ```bash
-tar -xzf zlrh-0.7.0-beta0.3-macos-arm64.tar.gz
-cd zlrh-0.7.0-beta0.3-macos-arm64
+tar -xzf zlrh-0.7.1-beta0.3-macos-arm64.tar.gz
+cd zlrh-0.7.1-beta0.3-macos-arm64
 sh install.sh
 ```
 
@@ -89,7 +89,7 @@ zlrh
 ## 卸载
 
 ```bash
-sh ~/zlrh-beta/releases/0.7.0-beta0.3/zlrh-0.7.0-beta0.3-macos-arm64/uninstall.sh
+sh ~/zlrh-beta/releases/0.7.1-beta0.3/zlrh-0.7.1-beta0.3-macos-arm64/uninstall.sh
 ```
 
 ## 安全

@@ -31,7 +31,7 @@
 
 ```bash
 git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
-cd ~/zlrh-beta/releases/0.7.0-beta0.3
+cd ~/zlrh-beta/releases/0.7.1-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
 ```
 
@@ -57,7 +57,7 @@ sh install.sh
 
 ### 3. 确认安装、同意用户协议
 
-**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.7.0 (beta0.3)`；
+**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.7.1 (beta0.3)`；
 第二条显示用户协议与版权声明；第三条是环境检测——首次运行任何功能都会显示用户协议，阅读后输入「同意」。
 
 ```bash
@@ -180,10 +180,10 @@ zlrh update
 ```bash
 cd ~/zlrh-beta
 git pull
-cd releases/0.7.0-beta0.3
+cd releases/0.7.1-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
-tar -xzf zlrh-0.7.0-beta0.3-macos-arm64.tar.gz
-cd zlrh-0.7.0-beta0.3-macos-arm64
+tar -xzf zlrh-0.7.1-beta0.3-macos-arm64.tar.gz
+cd zlrh-0.7.1-beta0.3-macos-arm64
 sh install.sh
 ```
 
