@@ -31,7 +31,7 @@
 
 ```bash
 git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
-cd ~/zlrh-beta/releases/0.5.0-beta0.1
+cd ~/zlrh-beta/releases/0.6.0-beta0.2
 shasum -a 256 -c SHA256SUMS --ignore-missing
 ```
 
@@ -57,7 +57,7 @@ sh install.sh
 
 ### 3. 确认安装、同意用户协议
 
-**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.5.0 (beta0.1)`；
+**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.6.0 (beta0.2)`；
 第二条显示用户协议与版权声明；第三条是环境检测——首次运行任何功能都会显示用户协议，阅读后输入「同意」。
 
 ```bash
@@ -147,7 +147,31 @@ zlrh env setup
 
 ---
 
-## 四、卸载
+## 四、更新
+
+**0.6（beta0.2）及以后的版本**：一条命令即可，程序会校验作者签名和哈希、拒绝降级：
+
+```bash
+zlrh update
+```
+
+只想看看有没有新版本：`zlrh update --check`。程序每天也会在后台检查一次，有新版本时提示。
+
+**从 0.5（beta0.1）升级**：0.5 还没有自动更新功能，需要手动装一次新版（之后就能用 `zlrh update` 了）：
+
+```bash
+cd ~/zlrh-beta
+git pull
+cd releases/0.6.0-beta0.2
+shasum -a 256 -c SHA256SUMS --ignore-missing
+tar -xzf zlrh-0.6.0-beta0.2-macos-arm64.tar.gz
+cd zlrh-0.6.0-beta0.2-macos-arm64
+sh install.sh
+```
+
+新版的用户协议有更新（增加了检查更新、本地网关的说明），首次运行时会请你重新确认。
+
+## 五、卸载
 
 在安装包解压后的目录里运行（第一行是 macOS / Linux，第二行是 Windows）：
 
@@ -158,7 +182,7 @@ powershell -ExecutionPolicy Bypass -File .\uninstall.ps1
 
 默认只删除 `zlrh` 程序；`~/.zlrh` 工作目录会先询问；你自己的模型和数据不会被动到。
 
-## 五、安全说明
+## 六、安全说明
 
 - 程序不含遥测，不收集任何数据；API Key 只从环境变量读取，不写入任何文件；
 - 安装脚本不需要管理员权限，只写入安装目录（默认 `~/.local/bin`）和你同意修改的 shell 配置文件；
