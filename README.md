@@ -9,23 +9,25 @@ Copyright © 2026 **Yeraldo Smith**（GitHub：YeraldoSmith · Hugging Face：Ye
 > 本仓库只发布安装包，不含源代码。使用前请阅读 [`EULA.md`](EULA.md)（用户协议与版权声明），
 > 程序首次运行时也会显示并要求你输入“同意”。未经作者许可，请勿转发或公开传播安装包。
 
-## 最新版本：v0.7.2（beta0.3）
+## 最新版本：v0.7.3（beta0.3）
 
-位于 [`releases/0.7.2-beta0.3/`](releases/0.7.2-beta0.3/)，更新内容见 [`releases/latest.json`](releases/latest.json) 的 notes：
+位于 [`releases/0.7.3-beta0.3/`](releases/0.7.3-beta0.3/)，更新内容见 [`releases/latest.json`](releases/latest.json) 的 notes：
 
 - **交互向导重做**：菜单分组、Esc 返回上一级、输入当场校验并说明原因；每个操作结束后结果停留在屏幕上，按回车才回到菜单；
 - **模型商店**：`zlrh search` 与向导里像应用商店一样搜索、分类、排序、看详情、判断本机内存放不放得下、一键下载；
 - **生图 / 生成视频**：`zlrh image` / `zlrh video`（SD-Turbo、SDXL、SSD-1B、FLUX、Wan2.1 等），针对 Mac 小内存自动优化；
 - **直接和 LM Studio 里的 GGUF / MLX 模型对话**，或把它们接入本地 API 网关；
 - **0.7.2**：商店里选中模型后可以**选择下载格式**（原始权重 / MLX / GGUF …，并说明每种能做什么——消融、融合、训练要选原始权重）；
-  斗兽场**一键备战**（按内存挑 2 个以上模型、下载后直接开打）；本机模型服务加随机访问密钥。
+  斗兽场**一键备战**（按内存挑 2 个以上模型、下载后直接开打）；本机模型服务加随机访问密钥；
+- **0.7.3**：斗兽场**上帝视角**（实时看到每个模型的思考、策略、命令与结果，每轮局势面板，赛后复盘）；
+  **后台模型管理**（`zlrh ps` 查看正在运行的模型与内存，`zlrh stop` 关闭，向导主菜单「🧹 后台模型管理」）。
 
 | 文件 | 适用设备 |
 |---|---|
-| `zlrh-0.7.2-beta0.3-macos-arm64.tar.gz` | **MacBook Air / Pro（M1~M4）** |
-| `zlrh-0.7.2-beta0.3-macos-x86_64.tar.gz` | Intel 芯片的 Mac |
-| `zlrh-0.7.2-beta0.3-linux-x86_64.tar.gz` | Linux x86_64（静态链接，任何发行版） |
-| `zlrh-0.7.2-beta0.3-windows-x86_64.zip` | Windows 10 / 11 64 位 |
+| `zlrh-0.7.3-beta0.3-macos-arm64.tar.gz` | **MacBook Air / Pro（M1~M4）** |
+| `zlrh-0.7.3-beta0.3-macos-x86_64.tar.gz` | Intel 芯片的 Mac |
+| `zlrh-0.7.3-beta0.3-linux-x86_64.tar.gz` | Linux x86_64（静态链接，任何发行版） |
+| `zlrh-0.7.3-beta0.3-windows-x86_64.zip` | Windows 10 / 11 64 位 |
 | `SHA256SUMS` | 以上安装包的 SHA-256 校验值 |
 
 旧版本保留在 `releases/0.6.0-beta0.2/`、`releases/0.5.0-beta0.1/`。
@@ -46,14 +48,14 @@ zlrh update
 ```bash
 cd ~/zlrh-beta
 git pull
-cd releases/0.7.2-beta0.3
+cd releases/0.7.3-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
-tar -xzf zlrh-0.7.2-beta0.3-macos-arm64.tar.gz
-cd zlrh-0.7.2-beta0.3-macos-arm64
+tar -xzf zlrh-0.7.3-beta0.3-macos-arm64.tar.gz
+cd zlrh-0.7.3-beta0.3-macos-arm64
 sh install.sh
 ```
 
-新开一个终端窗口，确认版本（应显示 `zlrh 0.7.2 (beta0.3)`），再运行 `zlrh`（用户协议有更新，会请你重新输入 `同意`）：
+新开一个终端窗口，确认版本（应显示 `zlrh 0.7.3 (beta0.3)`），再运行 `zlrh`（用户协议有更新，会请你重新输入 `同意`）：
 
 ```bash
 zlrh --version
@@ -66,15 +68,15 @@ zlrh
 
 ```bash
 git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
-cd ~/zlrh-beta/releases/0.7.2-beta0.3
+cd ~/zlrh-beta/releases/0.7.3-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
 ```
 
 **第 2 步：解压并安装**到 `~/.local/bin`（不需要 sudo；询问是否加入 PATH 时直接回车）：
 
 ```bash
-tar -xzf zlrh-0.7.2-beta0.3-macos-arm64.tar.gz
-cd zlrh-0.7.2-beta0.3-macos-arm64
+tar -xzf zlrh-0.7.3-beta0.3-macos-arm64.tar.gz
+cd zlrh-0.7.3-beta0.3-macos-arm64
 sh install.sh
 ```
 
@@ -91,7 +93,7 @@ zlrh
 ## 卸载
 
 ```bash
-sh ~/zlrh-beta/releases/0.7.2-beta0.3/zlrh-0.7.2-beta0.3-macos-arm64/uninstall.sh
+sh ~/zlrh-beta/releases/0.7.3-beta0.3/zlrh-0.7.3-beta0.3-macos-arm64/uninstall.sh
 ```
 
 ## 安全

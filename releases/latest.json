@@ -1,37 +1,37 @@
 {
   "product": "zlrh",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "label": "beta0.3",
   "published": "2026-11-12",
-  "notes": "v0.7.2（beta0.3）\n- 模型商店：选中一个模型后，列出它的所有格式（原始权重 / MLX / GGUF / AWQ·FP8 / diffusers）并说明每种能做什么、本机放不放得下；消融 / 融合 / 训练需要的「原始权重」一眼就能选到；新增“各种格式是做什么用的”说明\n- 从消融、融合等功能进入商店时，只推荐能用的格式，下载完直接回到原功能（不再问是否对话）\n- 修复：生图模型的 GGUF（给 ComfyUI 用）被当成对话模型去加载而报错；现在会说明原因并引导到原始 diffusers 版本；llama.cpp 加载失败时给出中文原因与办法\n- 斗兽场：自检后可以“一键备战”——按本机内存挑选 2~4 个能同时上场的模型（Mac 选 MLX，其它平台选 GGUF），下载后直接开打；GGUF 模型也能当选手 / 教师 / 评测对象\n- 本地安全：本机的模型服务（llama-server、生图服务、本地推理服务）每次运行随机生成访问密钥，网页或本机其它程序无法跨站调用；旧版 PyTorch 读取 .bin 权重时强制安全模式\n- 修复：zlrh eval 用 local: 写法的本地模型时，模型在作答前就被关闭\n\nv0.7.0 ~ v0.7.1（beta0.3）\n- 模型服务看门狗：关闭终端窗口或 zlrh 意外退出时，后台的模型服务（llama-server、生图服务、本地推理服务）会在 1 秒内自动结束，不再继续占用内存\n- 交互向导重做：菜单分组、Esc 返回上一级、文本留空返回；每个操作结束后结果停留在屏幕上，按回车才回到菜单（修复“输入什么都退回菜单、看不到错误”）\n- 选模型时自动列出本机能用的模型（项目 models/、LM Studio、Hugging Face 缓存），输入当场校验并说明原因；支持把文件夹拖进终端\n- 新增模型商店：zlrh search 与向导内搜索 / 分类 / 排序 / 详情 / 一键下载，显示本机内存是否放得下；GGUF 仓库只下载一个量化版本\n- 新增生图 / 视频：zlrh image、zlrh video（SD-Turbo、SDXL、SSD-1B、FLUX、Wan2.1、LTX 等），Mac 上自动选择精度、注意力切片、VAE 分块，小内存时分阶段加载；LoRA；生图模型按组件融合；网关新增图片 / 视频接口，网页界面支持生成\n- 可以直接和 GGUF（LM Studio / Ollama 下载的模型）对话或接入网关：llama-server 或 LM Studio 加载，加载前检查内存\n- 修复审查问题：下载路径校验、断点续传卡死、小文件哈希校验、魔搭兜底改为显式 --fallback-ms、项目配置不能覆盖内置预设、输出目录不能与输入相同、身份过滤误杀、--prompts 支持 .json 等\n- 用户协议更新（生成内容与模型许可证、模型商店与 LM Studio 的说明），首次运行需重新确认",
+  "notes": "v0.7.3（beta0.3）\n- 斗兽场「上帝视角」：实时显示每个模型的思考（💭）、策略（🎯）、命令与结果；每轮结束显示局势面板（各主机的旗子、弱点修补情况、谁进入了谁的主机、每个模型现在在哪）；模型思考时显示“思考中…”\n- 斗兽场赛后复盘：解释为什么是这个结果（例如平局是因为没人得分、哪个模型几个回合没有行动、提交了自己的旗子、ssh 被拒几次）\n- 修复：推理模型（DeepSeek-R1 等）思考太长被截断时整场没有动作——现在给推理模型更多 token，截断时提醒它直接行动；请求失败也会显示出来\n- 修复：虚拟环境里 ssh 的 -p / -o 等选项被当成口令、curl / nmap 不认 host:80 写法；新增 chmod u+x 写法与 | cut；规则里告诉模型命令写法、guest 账号和“各主机配置相似”\n- 混战计分更细：修补自己的弱点、登录进对手主机也加分，减少无意义的 0:0 平局；每轮轮换先手；内置机器人会走完整的攻击路线\n- 新增后台模型管理：zlrh ps 查看正在运行的模型与占用内存（含 Ollama / LM Studio 已加载的模型），zlrh stop 关闭；向导主菜单「🧹 后台模型管理」；启动新模型时若后台已占用较多内存会提醒\n- 消融 / 融合 / 训练 / 导出 GGUF 等命令收到 GGUF / MLX 量化模型时，当场说明原因并给出原始仓库（不再留下半成品目录）；仓库名写错时提示用 zlrh search 搜索\nv0.7.2（beta0.3）\n- 模型商店：选中一个模型后，列出它的所有格式（原始权重 / MLX / GGUF / AWQ·FP8 / diffusers）并说明每种能做什么、本机放不放得下；消融 / 融合 / 训练需要的「原始权重」一眼就能选到；新增“各种格式是做什么用的”说明\n- 从消融、融合等功能进入商店时，只推荐能用的格式，下载完直接回到原功能（不再问是否对话）\n- 修复：生图模型的 GGUF（给 ComfyUI 用）被当成对话模型去加载而报错；现在会说明原因并引导到原始 diffusers 版本；llama.cpp 加载失败时给出中文原因与办法\n- 斗兽场：自检后可以“一键备战”——按本机内存挑选 2~4 个能同时上场的模型（Mac 选 MLX，其它平台选 GGUF），下载后直接开打；GGUF 模型也能当选手 / 教师 / 评测对象\n- 本地安全：本机的模型服务（llama-server、生图服务、本地推理服务）每次运行随机生成访问密钥，网页或本机其它程序无法跨站调用；旧版 PyTorch 读取 .bin 权重时强制安全模式\n- 修复：zlrh eval 用 local: 写法的本地模型时，模型在作答前就被关闭",
   "files": {
     "linux-x86_64": {
-      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-linux-x86_64.tar.gz",
-      "size": 6616532,
-      "sha256": "a01569280a5a26823e7efd6e57512173fe97f10b806f7ffa4ded572bccb74901",
+      "path": "0.7.3-beta0.3/zlrh-0.7.3-beta0.3-linux-x86_64.tar.gz",
+      "size": 6717421,
+      "sha256": "1bd1beedda8466917d5d3e325e65f0822b32ef1e7618fd571c9f067798b6ae4b",
       "bin": "zlrh",
-      "bin_sha256": "8d373efe44b268778978c82995a611c11076253eed16895670207a31d2ff6a56"
+      "bin_sha256": "3eb7648bdac16628aee6cdf9e3e165c1e44d00d13a00011bd1dd3983b50323c5"
     },
     "macos-arm64": {
-      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-macos-arm64.tar.gz",
-      "size": 6026469,
-      "sha256": "3d26781535e364d785d2923b27973e6e3e5d580c09b7520d751f55630c36a83e",
+      "path": "0.7.3-beta0.3/zlrh-0.7.3-beta0.3-macos-arm64.tar.gz",
+      "size": 6149792,
+      "sha256": "91973152b47f9ac10e84519471e225176e0a91aebc011d188a5f5504477c0e0e",
       "bin": "zlrh",
-      "bin_sha256": "7fef508511627668e3ecdae782e2b4e632221d4b27172956a613f8c484ef3154"
+      "bin_sha256": "02ff6436ef936ec4c1298a1fb6da801fc3e4c60f72923c225690e9254b2c0e6a"
     },
     "macos-x86_64": {
-      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-macos-x86_64.tar.gz",
-      "size": 6418706,
-      "sha256": "fea96c0a58a9ce462b41550eadaa30d8cb1a28ec2fe4840538ba697b06371e20",
+      "path": "0.7.3-beta0.3/zlrh-0.7.3-beta0.3-macos-x86_64.tar.gz",
+      "size": 6517154,
+      "sha256": "6d534387fa7939a50f30d726c1e13df24a4a8fce51c1b08b22b63451e77aa60e",
       "bin": "zlrh",
-      "bin_sha256": "b72a66e8d87ca049fcb57a697644ea448df3fcec44dc85425525cc0d935babd9"
+      "bin_sha256": "b25141558c142e6585220978aae391ae5124d9c9ac36ccfce763a44e65220dec"
     },
     "windows-x86_64": {
-      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-windows-x86_64.zip",
-      "size": 6764808,
-      "sha256": "3e1a7256ac4ba84007600dac6b43b0e0c7db25c3527be5aac781b49093b7921b",
+      "path": "0.7.3-beta0.3/zlrh-0.7.3-beta0.3-windows-x86_64.zip",
+      "size": 6893134,
+      "sha256": "2b86f27828873f4db0c9e09fe3645d8561f6eedd892a03147f5f85b2f65fd289",
       "bin": "zlrh.exe",
-      "bin_sha256": "a2bc1db7fce9c8d8eaf278b984ccdb035e11fac23bda24d619124cbfc93913ab"
+      "bin_sha256": "4f2dbf26802cb28ee7aee8fe98f21e69585f062a2d5e1758184079746eaf58c1"
     }
   }
 }
