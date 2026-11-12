@@ -31,7 +31,7 @@
 
 ```bash
 git clone --depth 1 https://github.com/YeraldoSmith/ZLRH-beta0.1.git ~/zlrh-beta
-cd ~/zlrh-beta/releases/0.7.1-beta0.3
+cd ~/zlrh-beta/releases/0.7.2-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
 ```
 
@@ -57,7 +57,7 @@ sh install.sh
 
 ### 3. 确认安装、同意用户协议
 
-**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.7.1 (beta0.3)`；
+**新开一个终端窗口**（让 PATH 生效），然后依次执行：第一条应显示 `zlrh 0.7.2 (beta0.3)`；
 第二条显示用户协议与版权声明；第三条是环境检测——首次运行任何功能都会显示用户协议，阅读后输入「同意」。
 
 ```bash
@@ -109,6 +109,12 @@ zlrh search qwen3 -t chat --fits
 zlrh search -t image -s trending
 zlrh image sd-turbo -p "a cat astronaut on the moon" --open
 ```
+
+**选哪种格式？** 选中模型后会列出它的各种格式并说明用途：只想对话，Mac 上选 **MLX**（最快）；
+要做消融、融合、训练、蒸馏，必须选 **原始权重**（safetensors）；GGUF 适合 LM Studio / Ollama。
+在商店菜单里也有“各种格式是做什么用的”说明。
+
+斗兽场里选「一键备战」，会按你的内存挑 2 个以上能同时上场的模型，下载完直接开打。
 
 已经在 LM Studio 里下载过模型？在向导「💬 对话」→「本机模型」里会直接列出来（GGUF 和 MLX 都可以），
 也可以把 `.gguf` 文件拖进终端。和 GGUF 对话需要 llama.cpp：`brew install llama.cpp`（最简单），
@@ -180,10 +186,10 @@ zlrh update
 ```bash
 cd ~/zlrh-beta
 git pull
-cd releases/0.7.1-beta0.3
+cd releases/0.7.2-beta0.3
 shasum -a 256 -c SHA256SUMS --ignore-missing
-tar -xzf zlrh-0.7.1-beta0.3-macos-arm64.tar.gz
-cd zlrh-0.7.1-beta0.3-macos-arm64
+tar -xzf zlrh-0.7.2-beta0.3-macos-arm64.tar.gz
+cd zlrh-0.7.2-beta0.3-macos-arm64
 sh install.sh
 ```
 

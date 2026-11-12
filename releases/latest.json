@@ -1,37 +1,37 @@
 {
   "product": "zlrh",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "label": "beta0.3",
-  "published": "2026-11-11",
-  "notes": "v0.7.1（beta0.3）\n- 模型服务看门狗：关闭终端窗口或 zlrh 意外退出时，后台的模型服务（llama-server、生图服务、本地推理服务）会在 1 秒内自动结束，不再继续占用内存\n- 交互向导重做：菜单分组、Esc 返回上一级、文本留空返回；每个操作结束后结果停留在屏幕上，按回车才回到菜单（修复“输入什么都退回菜单、看不到错误”）\n- 选模型时自动列出本机能用的模型（项目 models/、LM Studio、Hugging Face 缓存），输入当场校验并说明原因；支持把文件夹拖进终端\n- 新增模型商店：zlrh search 与向导内搜索 / 分类 / 排序 / 详情 / 一键下载，显示本机内存是否放得下；GGUF 仓库只下载一个量化版本\n- 新增生图 / 视频：zlrh image、zlrh video（SD-Turbo、SDXL、SSD-1B、FLUX、Wan2.1、LTX 等），Mac 上自动选择精度、注意力切片、VAE 分块，小内存时分阶段加载；LoRA；生图模型按组件融合；网关新增图片 / 视频接口，网页界面支持生成\n- 可以直接和 GGUF（LM Studio / Ollama 下载的模型）对话或接入网关：llama-server 或 LM Studio 加载，加载前检查内存\n- 修复审查问题：下载路径校验、断点续传卡死、小文件哈希校验、魔搭兜底改为显式 --fallback-ms、项目配置不能覆盖内置预设、输出目录不能与输入相同、身份过滤误杀、--prompts 支持 .json 等\n- 用户协议更新（生成内容与模型许可证、模型商店与 LM Studio 的说明），首次运行需重新确认",
+  "published": "2026-11-12",
+  "notes": "v0.7.2（beta0.3）\n- 模型商店：选中一个模型后，列出它的所有格式（原始权重 / MLX / GGUF / AWQ·FP8 / diffusers）并说明每种能做什么、本机放不放得下；消融 / 融合 / 训练需要的「原始权重」一眼就能选到；新增“各种格式是做什么用的”说明\n- 从消融、融合等功能进入商店时，只推荐能用的格式，下载完直接回到原功能（不再问是否对话）\n- 修复：生图模型的 GGUF（给 ComfyUI 用）被当成对话模型去加载而报错；现在会说明原因并引导到原始 diffusers 版本；llama.cpp 加载失败时给出中文原因与办法\n- 斗兽场：自检后可以“一键备战”——按本机内存挑选 2~4 个能同时上场的模型（Mac 选 MLX，其它平台选 GGUF），下载后直接开打；GGUF 模型也能当选手 / 教师 / 评测对象\n- 本地安全：本机的模型服务（llama-server、生图服务、本地推理服务）每次运行随机生成访问密钥，网页或本机其它程序无法跨站调用；旧版 PyTorch 读取 .bin 权重时强制安全模式\n- 修复：zlrh eval 用 local: 写法的本地模型时，模型在作答前就被关闭\n\nv0.7.0 ~ v0.7.1（beta0.3）\n- 模型服务看门狗：关闭终端窗口或 zlrh 意外退出时，后台的模型服务（llama-server、生图服务、本地推理服务）会在 1 秒内自动结束，不再继续占用内存\n- 交互向导重做：菜单分组、Esc 返回上一级、文本留空返回；每个操作结束后结果停留在屏幕上，按回车才回到菜单（修复“输入什么都退回菜单、看不到错误”）\n- 选模型时自动列出本机能用的模型（项目 models/、LM Studio、Hugging Face 缓存），输入当场校验并说明原因；支持把文件夹拖进终端\n- 新增模型商店：zlrh search 与向导内搜索 / 分类 / 排序 / 详情 / 一键下载，显示本机内存是否放得下；GGUF 仓库只下载一个量化版本\n- 新增生图 / 视频：zlrh image、zlrh video（SD-Turbo、SDXL、SSD-1B、FLUX、Wan2.1、LTX 等），Mac 上自动选择精度、注意力切片、VAE 分块，小内存时分阶段加载；LoRA；生图模型按组件融合；网关新增图片 / 视频接口，网页界面支持生成\n- 可以直接和 GGUF（LM Studio / Ollama 下载的模型）对话或接入网关：llama-server 或 LM Studio 加载，加载前检查内存\n- 修复审查问题：下载路径校验、断点续传卡死、小文件哈希校验、魔搭兜底改为显式 --fallback-ms、项目配置不能覆盖内置预设、输出目录不能与输入相同、身份过滤误杀、--prompts 支持 .json 等\n- 用户协议更新（生成内容与模型许可证、模型商店与 LM Studio 的说明），首次运行需重新确认",
   "files": {
     "linux-x86_64": {
-      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-linux-x86_64.tar.gz",
-      "size": 6549270,
-      "sha256": "68684f8d0006263875aa895cd02bed86f5fda690650e94d551d20f4e52c94b1f",
+      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-linux-x86_64.tar.gz",
+      "size": 6616532,
+      "sha256": "a01569280a5a26823e7efd6e57512173fe97f10b806f7ffa4ded572bccb74901",
       "bin": "zlrh",
-      "bin_sha256": "323a35721c67154f99ea7973f540d20c8b9e478b8921b4cbcba7092199ce8782"
+      "bin_sha256": "8d373efe44b268778978c82995a611c11076253eed16895670207a31d2ff6a56"
     },
     "macos-arm64": {
-      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-macos-arm64.tar.gz",
-      "size": 5908054,
-      "sha256": "f8481e3b3bc18f7249e349a1fd4aa549f01c48da4c25f0738ea39e6adf68e997",
+      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-macos-arm64.tar.gz",
+      "size": 6026469,
+      "sha256": "3d26781535e364d785d2923b27973e6e3e5d580c09b7520d751f55630c36a83e",
       "bin": "zlrh",
-      "bin_sha256": "ab2721b12816b96147e249b9676f826406944ef8731715d36aa0413c9b624c33"
+      "bin_sha256": "7fef508511627668e3ecdae782e2b4e632221d4b27172956a613f8c484ef3154"
     },
     "macos-x86_64": {
-      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-macos-x86_64.tar.gz",
-      "size": 6267669,
-      "sha256": "76f5f3e76f1f1af0bff4d4c833b448ee7e0670a42c2b4fd71d914f9451fd8e8f",
+      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-macos-x86_64.tar.gz",
+      "size": 6418706,
+      "sha256": "fea96c0a58a9ce462b41550eadaa30d8cb1a28ec2fe4840538ba697b06371e20",
       "bin": "zlrh",
-      "bin_sha256": "49ba164c5be072f717412cb8afda69ea24a7e7ca00d65c04267dd31366f5ded8"
+      "bin_sha256": "b72a66e8d87ca049fcb57a697644ea448df3fcec44dc85425525cc0d935babd9"
     },
     "windows-x86_64": {
-      "path": "0.7.1-beta0.3/zlrh-0.7.1-beta0.3-windows-x86_64.zip",
-      "size": 6670908,
-      "sha256": "48d71fecb4fb382177ae7572e3525a5469107446371e6c1a1c0de770030f8ff9",
+      "path": "0.7.2-beta0.3/zlrh-0.7.2-beta0.3-windows-x86_64.zip",
+      "size": 6764808,
+      "sha256": "3e1a7256ac4ba84007600dac6b43b0e0c7db25c3527be5aac781b49093b7921b",
       "bin": "zlrh.exe",
-      "bin_sha256": "161269e0aa26a74b59e62b639c7ecaecf4fac2ce75451ff3c9031efc67b75fcd"
+      "bin_sha256": "a2bc1db7fce9c8d8eaf278b984ccdb035e11fac23bda24d619124cbfc93913ab"
     }
   }
 }
